@@ -1,0 +1,16 @@
+---
+- name: Update packages on RHEL system
+  hosts: rhel
+
+  tasks:
+  - name: Update all installed packages using YUM module
+    yum:
+      name: '*'
+      state: latest
+      update_cache: yes
+      update_only: yes
+    register: yum_update_status
+
+  - name: Remove packates not needed anymore
+    yum:
+      autoremove: yes

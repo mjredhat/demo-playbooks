@@ -1,0 +1,10 @@
+---
+- name: Apache server installed
+  hosts: rhel
+
+  tasks:
+  - name: configure the login banner
+    net_banner:
+      banner: login
+      text: "{{ message }}"
+      state: present

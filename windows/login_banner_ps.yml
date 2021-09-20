@@ -1,0 +1,17 @@
+---
+- name: Update login banner
+  hosts: windows
+
+  tasks:
+    - name: create dir
+      win_file:
+        path: C:\ansible_examples
+        state: directory
+
+    - name: Download PS1 File
+      win_get_url:
+        url: "{{ url }}"
+        dest: C:\ansible_examples\win-banner.ps1
+
+    - name: Run remote PowerShell Script
+      win_command: powershell.exe -ExecutionPolicy ByPass -File C:/ansible_examples/win-banner.ps1
