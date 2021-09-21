@@ -8,7 +8,7 @@
     - name: RUN SHOW COMMAND
       ios_command:
         commands:
-          - "{{ tower_input | default('show run | i hostname')}}"
+          - "{{ tower_input | default('show run')}}"
       register: show_output
 
     - name: RETURN RESULTS

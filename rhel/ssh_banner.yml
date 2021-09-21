@@ -1,0 +1,14 @@
+---
+- name: Add SSH Banner to Linux
+  become: yes
+  hosts: rhel
+
+  tasks:
+  - name: Adding banner info in sshd.conf
+    lineinfile: dest=/etc/ssh/sshd_config regexp='#Banner /etc/issue.net' line="Banner /etc/issue.net"
+
+  - name: Update ssh banner
+    template: src=ssh-banner.j2 dest=/etc/issue.net
+
+  - name: Restart ssh
+    service: name=sshd state=restarted
