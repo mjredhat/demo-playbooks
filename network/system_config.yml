@@ -20,13 +20,13 @@
         domain_search: "{{ network_domain_search | default(omit) }}"
         name_servers: "{{ network_name_servers | default(omit) }}"
 
-    - name: CONFIGURE HOST LOGGING
-      net_logging:
-        dest: host
-        name: "{{ site_log_host }}"
-        facility: kernel
-        level: critical
-      when: site_log_host is defined
+#    - name: CONFIGURE HOST LOGGING
+#     net_logging:
+#        dest: host
+#        name: "{{ site_log_host }}"
+#        facility: kernel
+#        level: critical
+#      when: site_log_host is defined
 
     - name: CONFIGURE SNMP
       ios_config:
