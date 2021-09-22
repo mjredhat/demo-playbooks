@@ -1,0 +1,20 @@
+---
+- name: Installing Chrome
+  hosts: windows
+ 
+  tasks:
+    - name: create dir
+      win_file:
+        path: C:\ansible_examples
+        state: directory
+
+    - name: Download Chrome Installer
+      win_get_url:
+        url: "{{ url }}"
+        dest: C:\ansible_examples\chrome.msi
+
+    - name: Remove Chrome via MSI
+      win_package: 
+        path: C:\ansible_examples\chrome.msi
+        arguments: /qn
+        state: absent

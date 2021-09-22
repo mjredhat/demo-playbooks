@@ -1,0 +1,22 @@
+---
+- name: Remove Apache
+  hosts: rhel
+
+  tasks:
+  - name: Stop httpd service
+    service: 
+      name: httpd
+      state: stopped
+
+  - name: Firewalld denies http service
+    firewalld:
+      service: http
+      permanent: true
+      state: disabled
+      immediate: yes
+
+  - name: Remove Apache
+    yum:
+      name: httpd
+      autoremove: yes
+      state: absent

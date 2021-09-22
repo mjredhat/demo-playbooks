@@ -1,8 +1,7 @@
 ---
-- name: Apache server installed
+- name: Reboot RHEL
   hosts: rhel
   
   tasks:
-  - name: Reboot when packages were updated
+  - name: Reboot RHEL
     reboot:
-    when: yum_update_status.changed
